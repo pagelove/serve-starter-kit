@@ -22,12 +22,6 @@
       using HTTP verbs. The following examples demonstrate this use.
     </p>
     <run-kit id="basics" modifies="#simple-list">
-        <template>
-          <ul>
-            <li>One</li>
-            <li>Two</li>
-          </ul>
-        </template>
         <script type="text/plain" title="POST Requests">
           document.querySelector('#simple-list').POST(`<li>Three</li>`);
         </script>
@@ -35,19 +29,14 @@
           document.querySelector('#simple-list li:last-child').DELETE();
         </script>
         <script type="text/plain" title="PUT Request">
-          const originalList = document.querySelector('#simple-list');
-          const runKit = originalList.previousElementSibling;
-          const rtemplate = document.querySelector('#basics template')
-          const replacement = rtemplate.content.cloneNode(true).firstElementChild;
-          replacement.id = originalList.id;
-          runKit.appendChild( replacement );
-          replacement.PUT();
+          const list = document.querySelector('#simple-list');
+          list.innerHTML = "<li>One</li>\n<li>Two</li>";
+          list.PUT();
         </script>
     </run-kit>
     <ul id="simple-list">
-            <li>One</li>
-            <li>Two</li>
-          </ul>
+      <li>One</li>
+      <li>Two</li></ul>
     </section>
   </main>
 
