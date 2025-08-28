@@ -38,16 +38,16 @@
           const originalList = document.querySelector('#simple-list');
           const runKit = originalList.previousElementSibling;
           const rtemplate = document.querySelector('#basics template')
-          const replacement = template.content.cloneNode(true).firstElementChild;
+          const replacement = rtemplate.content.cloneNode(true).firstElementChild;
           replacement.id = originalList.id;
           runKit.appendChild( replacement );
           replacement.PUT();
         </script>
     </run-kit>
     <ul id="simple-list">
-      <li>One</li>
-      <li>Two</li>
-    </ul>
+            <li>One</li>
+            <li>Two</li>
+          </ul>
     </section>
   </main>
 
