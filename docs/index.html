@@ -1,126 +1,62 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
+<!DOCTYPE html><html lang="en"><head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Welcome to Pagelove</title>
+  <link rel="stylesheet" href="https://pagelove.org/css/style.css">
   <link rel="stylesheet" href="styles.css">
+  <script type="module" src="https://pagelove.org/js/dom-primitives/index.mjs"></script>
+  <script type="module" src="components.js"></script>
 </head>
 <body>
   <!-- Hero Section with ID for selector targeting -->
-  <header id="hero" class="hero">
+  <header>
     <div class="container">
-      <h1>Welcome to Pagelove</h1>
-      <p class="tagline">Your content, delivered intelligently</p>
+      <h1>Pagelove</h1>
+      <p class="tagline">Documents power the web</p>
     </div>
   </header>
 
-  <!-- Main Navigation -->
-  <nav id="main-nav" class="navigation">
-    <div class="container">
-      <a href="/">Home</a>
-      <a href="/about.html">About</a>
-      <a href="#features">Features</a>
-      <a href="#contact">Contact</a>
-    </div>
-  </nav>
-
   <!-- Main Content Area -->
-  <main id="content" class="main-content">
-    <div class="container">
-      
-      <!-- Article with Microdata -->
-      <article itemscope itemtype="https://schema.org/Article" class="article">
-        <header class="article-header">
-          <h2 itemprop="headline">Getting Started with Pagelove</h2>
-          <div class="article-meta">
-            <time itemprop="datePublished" datetime="2024-01-15">
-              January 15, 2024
-            </time>
-            <span class="author" itemprop="author" itemscope itemtype="https://schema.org/Person">
-              by <span itemprop="name">Alex Developer</span>
-            </span>
-          </div>
-        </header>
-        
-        <div itemprop="articleBody" class="article-content">
-          <p itemprop="description">
-            Pagelove makes it easy to serve and manage your web content with advanced features
-            like CSS Selector Range units and automatic microdata to JSON-LD conversion.
-          </p>
-          
-          <h3>Key Features</h3>
-          <ul id="features" class="features-list">
-            <li class="feature">
-              <strong>Selector Range Units:</strong> 
-              Request specific parts of your HTML using CSS selectors
-            </li>
-            <li class="feature">
-              <strong>Content Negotiation:</strong> 
-              Automatically serve JSON-LD when requested
-            </li>
-            <li class="feature">
-              <strong>RESTful Operations:</strong> 
-              Update content using PUT, POST, and DELETE with selectors
-            </li>
+  <main>
+    <section>
+    <h2>Page Love Basics</h2>
+    <p>
+      At the heart of pagelove, is the ability to sugically modify the DOM
+      using HTTP verbs. The following examples demonstrate this use.
+    </p>
+    <run-kit id="basics" modifies="#simple-list">
+        <template>
+          <ul>
+            <li>One</li>
+            <li>Two</li>
           </ul>
-          
-          <h3>Quick Examples</h3>
-          <div class="code-examples">
-            <pre><code># Get just the hero section
-curl -H "Range: selector=#hero" http://localhost:5683/
-
-# Get this article as JSON-LD
-curl -H "Accept: application/ld+json" http://localhost:5683/
-
-# Update the tagline
-curl -X PUT -H "Range: selector=.tagline" \
-  -H "Content-Type: text/html" \
-  -d '&lt;p class="tagline"&gt;New tagline here&lt;/p&gt;' \
-  http://localhost:5683/</code></pre>
-          </div>
-        </div>
-      </article>
-
-      <!-- Product Example with Microdata -->
-      <section id="product" class="product-section">
-        <div itemscope itemtype="https://schema.org/Product" class="product">
-          <h3 itemprop="name">Pagelove CLI</h3>
-          <p itemprop="description">
-            A powerful command-line tool for modern web development
-          </p>
-          <div itemprop="offers" itemscope itemtype="https://schema.org/Offer">
-            <span itemprop="price">0</span>
-            <meta itemprop="priceCurrency" content="USD">
-            <link itemprop="availability" href="https://schema.org/InStock">
-            <span class="availability">Free & Open Source</span>
-          </div>
-        </div>
-      </section>
-
-      <!-- Organization Info -->
-      <section id="about-org" class="organization">
-        <div itemscope itemtype="https://schema.org/Organization">
-          <h3 itemprop="name">Pagelove</h3>
-          <p itemprop="description">
-            Building better tools for web content management
-          </p>
-          <a itemprop="url" href="https://pagelove.org">pagelove.org</a>
-        </div>
-      </section>
-    </div>
+        </template>
+        <script type="text/plain" title="POST Requests">
+          document.querySelector('#simple-list').POST(`<li>Three</li>`);
+        </script>
+        <script type="text/plain" title="DELETE Requests">
+          document.querySelector('#simple-list li:last-child').DELETE();
+        </script>
+        <script type="text/plain" title="PUT Request">
+          const originalList = document.querySelector('#simple-list');
+          const runKit = originalList.previousElementSibling;
+          const rtemplate = document.querySelector('#basics template')
+          const replacement = template.content.cloneNode(true).firstElementChild;
+          replacement.id = originalList.id;
+          runKit.appendChild( replacement );
+          replacement.PUT();
+        </script>
+    </run-kit>
+    <ul id="simple-list">
+      <li>One</li>
+      <li>Two</li>
+    </ul>
+    </section>
   </main>
 
+
   <!-- Footer -->
-  <footer id="footer" class="site-footer">
-    <div class="container">
-      <p>&copy; 2024 Pagelove. Built with ❤️ and CSS selectors.</p>
-      <nav class="footer-nav">
-        <a href="https://github.com/pagelove">GitHub</a>
-        <a href="https://pagelove.org">Website</a>
-        <a href="/docs">Documentation</a>
-      </nav>
-    </div>
+  <footer>
+    <network-inspector></network-inspector>
   </footer>
-</body>
-</html>
+</body></html>
