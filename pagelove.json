@@ -5,11 +5,10 @@
   "entry": "index.html",
   "port": 5683,
   "build": {
-    "outputDir": "docs",
+    "webroot": "docs",
     "publicPath": "/"
   },
   "routes": [],
-  "selectors": {},
   "middleware": [],
   "environment": {}
 }
