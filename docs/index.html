@@ -16,12 +16,12 @@
   <!-- Main Content Area -->
   <main>
     <section>
-    <h2>Pagelove starter kit - the basics</h2>
-    <p>
-      At the heart of pagelove, is the ability to sugically modify the DOM
-      using HTTP verbs. The following examples demonstrate this use.
-    </p>
-    <run-kit id="basics" modifies="#simple-list">
+      <h2>Pagelove starter kit - the basics</h2>
+      <p>
+        At the heart of pagelove, is the ability to sugically modify the DOM
+        using HTTP verbs. The following examples demonstrate this use.
+      </p>
+      <run-kit id="basics" modifies="#simple-list">
         <script type="text/plain" title="POST Requests">
           document.querySelector('#simple-list').POST(`<li>Three</li>`);
         </script>
@@ -33,10 +33,11 @@
           list.innerHTML = "<li>One</li>\n<li>Two</li>";
           list.PUT();
         </script>
-    </run-kit>
-    <ul id="simple-list">
-      <li>One</li>
-      <li>Two</li></ul>
+      </run-kit>
+      <ul id="simple-list">
+        <li>One</li>
+        <li>Two</li>
+      </ul>
     </section>
   </main>
 
