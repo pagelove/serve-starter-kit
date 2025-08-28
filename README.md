@@ -40,13 +40,6 @@ pagelove serve
 
 ## Examples Included
 
-### Microdata Markup
-The template includes Schema.org microdata examples for:
-- Article
-- Person
-- Organization
-- Product
-
 ### CSS Selector Range Units
 Test the selector range functionality:
 
